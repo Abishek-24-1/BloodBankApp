@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donor Details</title>
+</head>
+<body>
+
+<h1>Donor Details</h1>
+
+<div id="details"></div>
+
+<script>
+let id = window.location.pathname.split("/").pop();
+
+fetch("/donor/" + id)
+.then(res => res.json())
+.then(data => {
+
+    document.getElementById("details").innerHTML = `
+        <h2>${data.Name}</h2>
+        <p>Blood Group: ${data.BloodGroup}</p>
+        <p>Address: ${data.Address}</p>
+        <p>Phone: ${data.Phone}</p>
+        <p>Eligible: ${data.Eligible}</p>
+        <img src="${data.AadhaarImage}" width="150">
+    `;
+});
+</script>
+
+</body>
+</html>
+

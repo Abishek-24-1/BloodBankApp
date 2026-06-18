@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blood Bank System</title>
+</head>
+
+<body>
+
+<h1>🩸 Blood Bank System</h1>
+
+<input type="text" id="idcard" placeholder="Enter Aadhaar Number">
+<button onclick="searchDonor()">Search</button>
+
+<a href="/add_donor">
+    <button>Add Donor</button>
+</a>
+
+<hr>
+
+<div id="result"></div>
+
+<script>
+function searchDonor() {
+
+    let id = document.getElementById("idcard").value;
+
+    fetch("/donor/" + id)
+    .then(res => res.json())
+    .then(data => {
+
+        if (data.message) {
+            document.getElementById("result").innerHTML =
+                "<p>" + data.message + "</p>";
+            return;
+        }
+
+        document.getElementById("result").innerHTML = `
+            <h2>${data.Name}</h2>
+
+            <p><b>Blood Group:</b> ${data.BloodGroup}</p>
+            <p><b>Address:</b> ${data.Address}</p>
+            <p><b>Phone:</b> ${data.Phone}</p>
+
+            <p><b>Last Donation:</b> ${data.LastDonationDate}</p>
+            <p><b>TTI Status:</b> ${data.TTIStatus}</p>
+
+            <p><b>Eligible:</b> ${data.Eligible}</p>
+
+            <img src="${data.AadhaarImage}" width="150">
+        `;
+    });
+}
+</script>
+
+</body>
+</html>
