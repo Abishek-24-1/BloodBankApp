@@ -5,18 +5,11 @@ from datetime import date
 app = Flask(__name__)
 
 # ---------------- MYSQL CONNECTION ----------------
-db = mysql.connector.connect(
-    host="localhost",
-    user="bloodapp",
-    password="1234",
-    database="BloodBank"
-)
-
+db = None
 # ---------------- HOME PAGE ----------------
 @app.route('/')
 def home():
-    return render_template('index.html')
-
+    return "Blood Bank App Running Successfully on Render"
 
 # ---------------- SEARCH DONOR ----------------
 @app.route('/donor/<idcard>')
