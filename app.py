@@ -5,7 +5,12 @@ from datetime import date
 app = Flask(__name__)
 
 # ---------------- MYSQL CONNECTION ----------------
-db = None
+db = mysql.connector.connect(
+    host="localhost",
+    user="bloodapp",
+    password="1234",
+    database="BloodBank"
+)
 # ---------------- HOME PAGE ----------------
 @app.route('/')
 def home():
