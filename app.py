@@ -9,8 +9,7 @@ db = None
 # ---------------- HOME PAGE ----------------
 @app.route('/')
 def home():
-    return "Blood Bank App Running Successfully on Render"
-
+    return render_template('index.html')
 # ---------------- SEARCH DONOR ----------------
 @app.route('/donor/<idcard>')
 def donor(idcard):
